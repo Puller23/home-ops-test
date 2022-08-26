@@ -43,7 +43,7 @@ argocd-notifications:
         subject: New version of an application {{.app.metadata.name}} is up and running.
       message: |
         Application {{.app.metadata.name}} is now running new version of deployments manifests.
-webhook:
+      webhook:
         discord:
           method: POST
           body: |
@@ -91,7 +91,7 @@ webhook:
       message: |
         Application {{.app.metadata.name}} has degraded.
         Application details: {{.context.argocdUrl}}/applications/{{.app.metadata.name}}.
-webhook:
+      webhook:
         discord:
           method: POST
           body: |
