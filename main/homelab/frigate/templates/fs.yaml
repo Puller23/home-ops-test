@@ -1,16 +1,22 @@
-apiVersion: v1
-kind: PersistentVolume
-metadata:
-  name: frigate-pv
-  namespace: homelab
-spec:
-  capacity:
-    storage: 10Gi
-  volumeMode: Filesystem
-  accessModes:
-    - ReadWriteOnce
-  persistentVolumeReclaimPolicy: Delete
-  storageClassName: longhorn
+# apiVersion: v1
+# kind: PersistentVolume
+# metadata:
+#   name: frigate-pv
+# spec:
+#   capacity:
+#     storage: 10Gi
+#   volumeMode: Filesystem
+#   accessModes:
+#     - ReadWriteOnce
+#   persistentVolumeReclaimPolicy: Delete
+#   storageClassName: longhorn
+#   csi:
+#     driver: driver.longhorn.io
+#     fsType: ext4
+#     volumeAttributes:
+#       numberOfReplicas: '2'
+#       staleReplicaTimeout: '2880'
+#     volumeHandle: existing-longhorn-volume
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
@@ -25,3 +31,16 @@ spec:
       storage: 2Gi
   volumeName: frigate-pv
   storageClassName: longhorn
+---
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: nas-media-pvc
+  namespace: homelab
+spec:
+  storageClassName: nfs-client
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 20Gi

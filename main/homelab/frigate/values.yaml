@@ -1,0 +1,30 @@
+frigate:
+  image:
+    repository: docker.io/blakeblackshear/frigate
+    tag: 0.11.1
+  securityContext:
+    privileged: true
+  
+  persistence:
+    data:
+      enabled: true
+      storageClass: longhorn
+      accessMode: ReadWriteOnce
+      size: 10Gi
+      mountPath: /data
+    media:
+      enabled: true
+      existingClaim: nas-media-pvc
+      mountPath: /media
+      subPath: Videos
+    # usb:
+    #   enabled: true
+    #   type: hostPath
+    #   hostPath: /dev/bus/usb
+    cache:
+      enabled: true
+      type: emptyDir
+      medium: Memory
+      sizeLimit: 2Gi
+      # mountPath: /dev/shm
+      mountPath: /tmp/cache
