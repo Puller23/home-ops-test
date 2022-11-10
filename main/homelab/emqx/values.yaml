@@ -1,9 +1,9 @@
 emqx:
   replicaCount: 2
   recreatePods: true
-  # service:
-  #   type: LoadBalancer
-  #   loadBalancerIP: 172.18.18.33
+  service:
+    type: LoadBalancer
+    loadBalancerIP: 172.18.18.16
   affinity:
     podAntiAffinity:
       requiredDuringSchedulingIgnoredDuringExecution:
@@ -57,7 +57,7 @@ emqx:
 #         - hosts:
 #             - emqx.local.ibartels.de
 #           secretName: local.ibartels.de-tls
-# valuesFrom:
-#   - kind: Secret
-#     name: "emqx-secretss"
-#     optional: false
+valuesFrom:
+  - kind: Secret
+    name: "emqx-secret"
+    optional: false
