@@ -1,0 +1,7 @@
+metallb:
+  configInline:
+    address-pools:
+      - name: default
+        protocol: layer2
+        addresses:
+          - "172.18.18.16-172.18.18.18"
