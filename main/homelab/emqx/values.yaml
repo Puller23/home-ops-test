@@ -16,6 +16,7 @@ emqx:
           topologyKey: "kubernetes.io/hostname"
   emqxConfig:
     EMQX_ALLOW_ANONYMOUS: "false"
+    EMQX_DASHBOARD__DEFAULT_PASSWORD: $EMQX_DASHBOARD__DEFAULT_PASSWORD
 
   emqxAclConfig: >
     {allow, {user, "dashboard"}, subscribe, ["$SYS/#"]}.
