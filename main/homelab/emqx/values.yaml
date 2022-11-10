@@ -17,6 +17,7 @@ emqx:
   emqxConfig:
     EMQX_ALLOW_ANONYMOUS: "false"
     EMQX_DASHBOARD__DEFAULT_PASSWORD: test
+    EMQX_AUTH__MNESIA__PASSWORD_HASH: plain
     EMQX_AUTH__USER__1__USERNAME: mqtt
     EMQX_AUTH__USER__1__PASSWORD: test
 
