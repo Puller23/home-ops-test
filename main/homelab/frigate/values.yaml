@@ -64,7 +64,7 @@ frigate:
 
           database:
             path: /data/frigate.db
-          
+
 #           detectors:
 #             coral:
 #               type: edgetpu
