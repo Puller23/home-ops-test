@@ -60,8 +60,8 @@ frigate:
             host: emqx.homelab.svc
             topic_prefix: frigate
             user: mqtt
-            password: '{FRIGATE_MQTT_PASSWORD}'
-            
+            password: 'SuperSicher123!'
+
           database:
             path: /data/frigate.db
           
