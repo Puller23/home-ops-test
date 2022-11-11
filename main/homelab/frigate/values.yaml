@@ -56,6 +56,11 @@ frigate:
       enabled: true
       data:
         config.yml: |
+          mqtt:
+            host: emqx.default.svc
+            topic_prefix: frigate
+            user: mqtt
+            password: '{FRIGATE_MQTT_PASSWORD}'
 #           mqtt:
 #             host: emqx.default.svc
 #             topic_prefix: frigate
@@ -86,9 +91,9 @@ frigate:
               record: -f segment -segment_time 10 -segment_format mp4 -reset_timestamps 1 -strftime 1 -c:v copy -c:a aac -ar 44100
               rtmp: -c:v copy -f flv -ar 44100 -c:a aac
           
-#           objects:
-#             track:
-#               - person
+          objects:
+            track:
+              - person
 #               - bird
 #             filters:
 #               person:
@@ -96,15 +101,15 @@ frigate:
 #                 max_area: 100000
 #                 threshold: 0.75
           
-#           record:
-#             enabled: true
-#             retain:
-#               days: 0
-#               mode: motion
-#             events:
-#               retain:
-#                 default: 14
-#                 mode: active_objects
+          record:
+            enabled: true
+            retain:
+              days: 0
+              mode: motion
+            events:
+              retain:
+                default: 14
+                mode: active_objects
           
 #           snapshots:
 #             enabled: true
@@ -114,7 +119,24 @@ frigate:
 #             retain:
 #               default: 7
           
-#           cameras:
+          cameras:
+            kitchen:
+              ffmpeg:
+                inputs:
+                  - path: 'rtsp://172.18.18.240/live0'
+                    roles:
+                      - detect
+              detect:
+                height: 480
+                width: 704
+                fps: 5
+              objects:
+                filters:
+                  person:
+                    min_area: 1500
+                    max_area: 100000
+                    threshold: 0.75
+                    min_score: 0.60
 #             basement_room:
 #               ffmpeg:
 #                 inputs:
