@@ -50,6 +50,7 @@ frigate:
 
   env:
     TZ: "Europe/Berlin"
+    FRIGATE_MQTT_PASSWORD: "$EMQX_MQTT_USER_PASSWORD"
 
   configmap:
     config:
