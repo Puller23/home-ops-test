@@ -60,15 +60,10 @@ frigate:
             host: emqx.homelab.svc
             topic_prefix: frigate
             user: mqtt
-            password: 'SuperSicher123!'
+            password: '{FRIGATE_MQTT_PASSWORD}'
 
           database:
             path: /data/frigate.db
-
-#           detectors:
-#             coral:
-#               type: edgetpu
-#               device: usb
           
           ffmpeg:
             global_args:
@@ -89,12 +84,6 @@ frigate:
           objects:
             track:
               - person
-#               - bird
-#             filters:
-#               person:
-#                 min_area: 3000
-#                 max_area: 100000
-#                 threshold: 0.75
           
           record:
             enabled: true
@@ -105,14 +94,6 @@ frigate:
               retain:
                 default: 14
                 mode: active_objects
-          
-#           snapshots:
-#             enabled: true
-#             timestamp: false
-#             bounding_box: true
-#             crop: false
-#             retain:
-#               default: 7
           
           cameras:
             kitchen:
@@ -132,103 +113,8 @@ frigate:
                     max_area: 100000
                     threshold: 0.75
                     min_score: 0.60
-#             basement_room:
-#               ffmpeg:
-#                 inputs:
-#                   - path: '{FRIGATE_LOREX_HOST}/cam/realmonitor?channel=1&subtype=1'
-#                     roles:
-#                       - detect
-#                   - path: '{FRIGATE_LOREX_HOST}/cam/realmonitor?channel=1&subtype=0'
-#                     roles:
-#                       - rtmp
-#                       - record
-#               detect:
-#                 height: 480
-#                 width: 704
-#                 fps: 5
-#               objects:
-#                 filters:
-#                   person:
-#                     min_area: 1500
-#                     max_area: 100000
-#                     threshold: 0.75
-#                     min_score: 0.60
-          
-#             basement_main:
-#               ffmpeg:
-#                 inputs:
-#                   - path: '{FRIGATE_LOREX_HOST}/cam/realmonitor?channel=2&subtype=1'
-#                     roles:
-#                       - detect
-#                   - path: '{FRIGATE_LOREX_HOST}/cam/realmonitor?channel=2&subtype=0'
-#                     roles:
-#                       - rtmp
-#                       - record
-#               detect:
-#                 height: 480
-#                 width: 704
-#                 fps: 5
-              
-#             deck:
-#               ffmpeg:
-#                 inputs:
-#                   - path: '{FRIGATE_LOREX_HOST}/cam/realmonitor?channel=3&subtype=1'
-#                     roles:
-#                       - detect
-#                   - path: '{FRIGATE_LOREX_HOST}/cam/realmonitor?channel=3&subtype=0'
-#                     roles:
-#                       - rtmp
-#                       - record
-#               detect:
-#                 height: 480
-#                 width: 704
-#                 fps: 5
-              
-#             porch:
-#               ffmpeg:
-#                 inputs:
-#                   - path: '{FRIGATE_LOREX_HOST}/cam/realmonitor?channel=4&subtype=1'
-#                     roles:
-#                       - detect
-#                   - path: '{FRIGATE_LOREX_HOST}/cam/realmonitor?channel=4&subtype=0'
-#                     roles:
-#                       - rtmp
-#                       - record
-#               detect:
-#                 height: 480
-#                 width: 704
-#                 fps: 5
-              
-#             driveway:
-#               ffmpeg:
-#                 inputs:
-#                   - path: '{FRIGATE_LOREX_HOST}/cam/realmonitor?channel=5&subtype=1'
-#                     roles:
-#                       - detect
-#                   - path: '{FRIGATE_LOREX_HOST}/cam/realmonitor?channel=5&subtype=0'
-#                     roles:
-#                       - rtmp
-#                       - record
-#               detect:
-#                 height: 480
-#                 width: 704
-#                 fps: 5
-              
-#             server:
-#               ffmpeg:
-#                 inputs:
-#                   - path: '{FRIGATE_LOREX_HOST}/cam/realmonitor?channel=6&subtype=1'
-#                     roles:
-#                       - detect
-#                   - path: '{FRIGATE_LOREX_HOST}/cam/realmonitor?channel=6&subtype=0'
-#                     roles:
-#                       - rtmp
-#                       - record
-#               detect:
-#                 height: 480
-#                 width: 704
-#                 fps: 5
+
   valuesFrom:
-    - kind: Secret
-      name: "frigate-values"
-      optional: false
+  - kind: Secret
+    name: "frigate-values"
+    optional: false
