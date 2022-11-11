@@ -233,3 +233,7 @@ frigate:
 #                 height: 480
 #                 width: 704
 #                 fps: 5
+  valuesFrom:
+    - kind: Secret
+      name: "frigate-values"
+      optional: false
